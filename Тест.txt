@@ -1,0 +1,13 @@
+Проверка EDT
+ring edt workspace validate --workspace-location U:\Козинский
+\EDT --file U:\Козинский\EDT\edt-result.csv --project-list U:\Козинский\EDT\Пери
+на_Розница
+
+Конвертация проверки EDT
+stebi convert -e U:\Козинский\EDT\edt-result.csv U:\Козинский\EDT\edt.json U:\Козинский\EDT\Перина_Розница\src
+
+//Трансформация результатов EDT
+set GENERIC_ISSUE_SETTINGS_JSON=U:\Козинский\Git\jenkins-pipeline-1C-to-sonar\Sonar\settings.json
+set GENERIC_ISSUE_JSON=U:\Козинский\EDT\edt.json
+set SRC=U:\Козинский\EDT\Перина_Розница\src
+stebi transform -r=0
