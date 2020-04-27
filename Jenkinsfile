@@ -130,30 +130,30 @@ pipeline {
                 }
             }
         }
-       // stage('EDT') {
-         //   steps {
-           //     timestamps {
-             //       script {
-               //         if (fileExists("${EDT_VALIDATION_RESULT}")) {
-                 //           cmd("@DEL \"${EDT_VALIDATION_RESULT}\"")
-                   //     }
-                     //   cmd("""
-             ///           @set RING_OPTS=-Dfile.encoding=UTF-8 -Dosgi.nl=ru
-                //        ring edt workspace validate --workspace-location \"${TEMP_CATALOG}\" --file \"${EDT_VALIDATION_RESULT}\" --project-list \"${PROJECT_NAME_EDT}\"
-                  //      """)
-             //       }
-             //   }
-            //}
-        //}
-        //stage('bsl-language-server') {
-          //  steps {
-         //       timestamps {
-         //           script {
-          //          cmd("java -Xmx8g -jar ${BIN_CATALOG}bsl-language-server.jar -a -s \"./Repo/${SRC}\" -r generic -c \"${BSL_LS_PROPERTIES}\" -o \"${TEMP_CATALOG}\"")
-          //          }
-         //       }
-        //    }
-        //}
+        stage('EDT') {
+            steps {
+                timestamps {
+                    script {
+                       if (fileExists("${EDT_VALIDATION_RESULT}")) {
+                            cmd("@DEL \"${EDT_VALIDATION_RESULT}\"")
+                        }
+                        cmd("""
+                        @set RING_OPTS=-Dfile.encoding=UTF-8 -Dosgi.nl=ru
+                        ring edt workspace validate --workspace-location \"${TEMP_CATALOG}\" --file \"${EDT_VALIDATION_RESULT}\" --project-list \"${PROJECT_NAME_EDT}\"
+                        """)
+                   }
+                }
+            }
+        }
+        stage('bsl-language-server') {
+            steps {
+                timestamps {
+                    script {
+                    cmd("java -Xmx8g -jar ${BIN_CATALOG}bsl-language-server.jar -a -s \"./Repo/${SRC}\" -r generic -c \"${BSL_LS_PROPERTIES}\" -o \"${TEMP_CATALOG}\"")
+                    }
+                }
+            }
+        }
         stage('Конвертация результатов EDT') {
             steps {
                 timestamps {
