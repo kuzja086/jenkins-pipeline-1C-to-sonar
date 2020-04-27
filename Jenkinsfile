@@ -120,7 +120,7 @@ pipeline {
                 }
             }
         }
-        stage('АПК') {
+       //stage('АПК') {
            // steps {
            //     timestamps {
            //         script {
@@ -129,7 +129,7 @@ pipeline {
            //         }
            //     }
             //}
-        }
+        //}
         stage('EDT') {
             steps {
                 timestamps {
